@@ -1,0 +1,114 @@
+package com.project.dao;
+
+import java.util.List;
+
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+import javax.transaction.Transactional;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import com.project.model.Like;
+
+@Repository("likeDao")
+@Transactional
+public class LikeDaoImpl implements LikeDao {
+
+	
+	private SessionFactory sesFact;
+	
+	public LikeDaoImpl() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	@Autowired
+	public LikeDaoImpl(SessionFactory sesFact) {
+		super();
+		this.sesFact = sesFact;
+	}
+
+
+	/*
+	 * This seems to be the only likeDao method that we would need for this project
+	 */
+	@Override
+	public void addLikeToDB(Like like) {
+
+		sesFact.getCurrentSession().save(like);
+		
+
+	}
+
+	@Override
+	public List<Like> readAllLikes() {
+
+//		//Session ses = HibernateUtil.getSession();
+//
+//		CriteriaBuilder cb = ses.getCriteriaBuilder();
+//		CriteriaQuery<Like> cr = cb.createQuery(Like.class);
+//
+//		Root<Like> root = cr.from(Like.class);
+//		// cr.select(root);
+//
+//		Query<Like> query = ses.createQuery(cr);
+//		List<Like> results = query.getResultList();
+//
+//		ses.close();
+//
+//		if (results.size() == 0) {
+//			return null;
+//		}
+//
+		return null;
+	}
+
+	@Override
+	public List<Like> readLikeByUser(int userId) {
+
+//		//Session ses = HibernateUtil.getSession();
+//
+//		CriteriaBuilder cb = ses.getCriteriaBuilder();
+//		CriteriaQuery<Like> cr = cb.createQuery(Like.class);
+//
+//		Root<Like> root = cr.from(Like.class);
+//
+//		cr.select(root).where(cb.equal(root.get("user"), userId));
+//		
+//		Query<Like> query = ses.createQuery(cr);
+//		List<Like> results = query.getResultList();
+//
+//		// Boilerplate session end
+//		ses.close();
+//
+//		if (results.size() == 0) {
+//			return null;
+//		}
+//
+		return null;
+	}
+
+	@Override
+	public List<Like> readLikeByPost(int postId) {
+//		//Session ses = HibernateUtil.getSession();
+//
+//		CriteriaBuilder cb = ses.getCriteriaBuilder();
+//		CriteriaQuery<Like> cr = cb.createQuery(Like.class);
+//
+//		Root<Like> root = cr.from(Like.class);
+//
+//		cr.select(root).where(cb.equal(root.get("post"), postId));
+		return null;
+	}
+
+	@Override
+	public void deleteLike() {
+		// TODO Auto-generated method stub
+
+	}
+
+}
