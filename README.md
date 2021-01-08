@@ -8,14 +8,4 @@ In Revature's Social Network everyone is friends with everyone else. Users can r
 Spring, Java, SQL, Hibernate, HTML, CSS, JavaScript, Log4J, JUnit, React, Redux, TypeScript, Agile-Scrum
 
 **Features Implemented:**
-Registering an account
-Logging in and out
-Reseting passwords
-Modifying user information
-Uploading a profile picture
-Searching for other users
-Creating posts with images
-Viewing a user's own profile and posts
-Viewing another user's profile and posts
-Seeing a posts feed
-Liking posts
+Registering an account, Logging in and out, Reseting passwords, Modifying user information, Uploading a profile picture, Searching for other users, Creating posts with images, Viewing a user's own profile and posts, Viewing another user's profile and posts, Seeing a posts feed, Liking posts
