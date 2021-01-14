@@ -38,5 +38,12 @@ In Revature's Social Network everyone is friends with everyone else. Users can r
 ## Usage
 Start by registering an account on the home page followed by logging in with the provided credentials. Any previously created posts will be visible in the feed.
 
+## Contributors
+* Sean Riehl
+* David Lyu
+* Joeseph Shannon
+* Albert Washington
+* Jacob Haerle
+
 ## License
 This project uses the following license: [MIT License] (https://choosealicense.com/licenses/mit/).
