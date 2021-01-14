@@ -32,9 +32,9 @@ In Revature's Social Network everyone is friends with everyone else. Users can r
 * Liking posts
 
 ## Getting Started
-**Pulling from Git: git clone https://github.com/Madninja4/Reimbursement-System.git
+**Pulling from Git: git clone https://github.com/Madninja4/Reimbursement-System.git**
 
-**Deploying to Tomcat: http://localhost:PORT_NUMBER/ReimbursementSystem
+**Deploying to Tomcat: http://localhost:PORT_NUMBER/ReimbursementSystem**
 
 ## Usage
 Start by registering an account on the home page followed by logging in with the provided credentials. Any previously created posts will be visible in the feed.
