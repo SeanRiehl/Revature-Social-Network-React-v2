@@ -40,5 +40,3 @@ Start by registering an account on the home page followed by logging in with the
 
 ## License
 This project uses the following license: [MIT License] (https://choosealicense.com/licenses/mit/).
-
-
