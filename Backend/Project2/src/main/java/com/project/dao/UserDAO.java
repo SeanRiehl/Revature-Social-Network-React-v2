@@ -12,11 +12,12 @@ public interface UserDAO {
 	public List<User> readAllUsers();
 	public User readUserByID(int user_id);
 	public User readUserByUsername(String username);
+	public User readUserByEmail(String email);
 
 	// Update
 	public boolean updateUsername(int user_id, String username);
 	public boolean updatePassword(int user_id, String password);
-	public boolean updatePicture(int user_id, byte[] picture);
+	public boolean updatePicture(int user_id, String picture);
 
 	// Delete
 	public boolean deleteUser(User user);

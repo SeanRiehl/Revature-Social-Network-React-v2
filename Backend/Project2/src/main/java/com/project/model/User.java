@@ -22,6 +22,9 @@ public class User {
 	@Column(name = "username", nullable = false, unique = true)
 	private String username;
 
+	@Column(name = "password_salt", nullable = false)
+	private String salt;
+
 	@Column(name = "password", nullable = false)
 	private String password;
 
@@ -35,21 +38,50 @@ public class User {
 	private String email;
 
 	@Column(name = "profile_picture")
-	private byte[] profilePicture;
+	private String profilePicture;
 
 	// no arg constructor, all arg constructor
 	// getters/setters & toString()
 
 	public User() 
 	{
-		//Hibernate requires an empty constructor
+		// Hibernate requires an empty constructor
 	}
 
-	public User(int userId, String username, String password, String firstName, String lastName, String email,
-			byte[] profilePicture) {
+
+//	public User(int userId, String username, String password, String firstName, String lastName,
+//			String email, String profilePicture) {
+//
+//		super();
+//		this.userId = userId;
+//		this.username = username;
+//		this.password = password;
+//		this.firstName = firstName;
+//		this.lastName = lastName;
+//		this.email = email;
+//		this.profilePicture = profilePicture;
+//	}
+//
+//
+//
+//	public User(String username, String password, String firstName, String lastName, String email,
+//			String profilePicture) {
+//
+//		super();
+//		this.username = username;
+//		this.password = password;
+//		this.firstName = firstName;
+//		this.lastName = lastName;
+//		this.email = email;
+//		this.profilePicture = profilePicture;
+//	}
+	
+	public User(int userId, String username, String salt, String password, String firstName, String lastName,
+			String email, String profilePicture) {
 		super();
 		this.userId = userId;
 		this.username = username;
+		this.salt = salt;
 		this.password = password;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -57,21 +89,21 @@ public class User {
 		this.profilePicture = profilePicture;
 	}
 
-	public User(String username, String password, String firstName, String lastName, String email,
-			byte[] profilePicture) {
+	public User(String username, String salt, String password, String firstName, String lastName, String email,
+			String profilePicture) {
 		super();
 		this.username = username;
+		this.salt = salt;
 		this.password = password;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.profilePicture = profilePicture;
 	}
-	
+
 	public int getUserId() {
 		return userId;
 	}
-
 
 	public void setUserId(int userId) {
 		this.userId = userId;
@@ -83,6 +115,14 @@ public class User {
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+
+	public String getSalt() {
+		return salt;
+	}
+
+	public void setSalt(String salt) {
+		this.salt = salt;
 	}
 
 	public String getPassword() {
@@ -117,19 +157,31 @@ public class User {
 		this.email = email;
 	}
 
-	public byte[] getProfilePicture() {
+	public String getProfilePicture() {
 		return profilePicture;
 	}
 
-	public void setProfilePicture(byte[] profilePicture) {
+	public void setProfilePicture(String profilePicture) {
 		this.profilePicture = profilePicture;
 	}
 
+
 	@Override
 	public String toString() {
-		return "\n\tUser [userId=" + userId + ", username=" + username + ", password=" + password + ", firstName="
-				+ firstName + ", lastName=" + lastName + ", email=" + email + ", profilePicture="
-				+ Arrays.toString(profilePicture) + "]";
+
+		return "\n\tUser [userId=" + userId + ", username=" + username + ", salt=" + salt + " password=" + password
+				+ ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", profilePicture="
+				+ profilePicture + "]";
+
 	}
+
+//	@Override
+//	public String toString() {
+//		return "\n\tUser [userId=" + userId + ", username=" + username + ", salt=" + salt + " password=" + password
+//				+ ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", profilePicture="
+//				+ Arrays.toString(profilePicture) + "]";
+//	}
+	
+	
 
 }

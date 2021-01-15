@@ -9,9 +9,10 @@ public interface UserService {
 	public List<User> getAllUsers();
 	public User getUserByID(int user_id);
 	public User getUserByUsername(String username);
+	public User getUserByEmail(String email);
 	public boolean updateUsername(int user_id, String username);
 	public boolean updatePassword(int user_id, String password);
-	public boolean updatePicture(int user_id, byte[] picture);
+	public boolean updatePicture(int user_id, String picture);
 	public boolean removeUser(User user);
 	public boolean verifyCredentials(String username, String password);
 	public boolean checkUsernameExists(String username);

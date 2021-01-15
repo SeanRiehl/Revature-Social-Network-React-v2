@@ -3,21 +3,26 @@ package com.project.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.project.dao.UserDAO;
-import com.project.dao.UserDAOImpl;
 import com.project.model.User;
 
+@Service("userServ")
 public class UserServiceImpl implements UserService {
-
-	private UserDAO uDao = new UserDAOImpl();
+	
+	//FIELD
+	private UserDAO uDao;
 
 	
 	public UserServiceImpl() 
 	{
 		
 	}
-
-
+	
+	//AUTOWIRED CONSTRUCTOR
+	@Autowired
 	public UserServiceImpl(UserDAO uDao) 
 	{
 		this.uDao = uDao;
@@ -64,6 +69,11 @@ public class UserServiceImpl implements UserService {
 		
 		return uDao.readUserByUsername(username);
 	}
+	
+	@Override 
+	public User getUserByEmail(String email) {
+		return uDao.readUserByEmail(email);
+	}
 
 	@Override
 	public boolean updateUsername(int user_id, String username) {
@@ -78,7 +88,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public boolean updatePicture(int user_id, byte[] picture) {
+	public boolean updatePicture(int user_id, String picture) {
 		
 		return uDao.updatePicture(user_id, picture);
 	}
@@ -94,7 +104,7 @@ public class UserServiceImpl implements UserService {
 		
 		User chkUser = uDao.readUserByUsername(username);
 		
-		if(chkUser.getPassword().equals(password))
+		if(chkUser!=null && chkUser.getPassword().equals(password))
 		{
 			return true;
 		}

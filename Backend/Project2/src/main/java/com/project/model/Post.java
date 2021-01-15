@@ -2,19 +2,16 @@ package com.project.model;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -28,22 +25,21 @@ public class Post {
 	@Column(name = "post_id")
 	private int postId;
 	
-	@Column(name="post_text", nullable=false)
+	//length and size sets the string length to a varchar(length)  
+	@Column(name="post_text", nullable=false, length=280)
+	@Size(min=1, max=280)
 	private String postText;
 	
 	@Column(name="post_picture")
-	private byte[] postPicture;
+	private String postPicture;
 	
 	@CreationTimestamp
 	@Column(name="timestamp", nullable=false)
 	private LocalDateTime timestamp;
-//MERGE CONFLICT HERE DONT KNOW WHICH ONE IS PREFERED
-	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER, mappedBy = "post")
-	private List<Like> likes;
+	
 	@ManyToOne
 	@JoinColumn(name="user_id_fk", referencedColumnName="user_id")
 	private User author;
-
 	
 	//no arg constructor, all arg constructor,
 	//getters/setters & toString()
@@ -53,17 +49,18 @@ public class Post {
 		//Required for Hibernate.
 	}
 
-	public Post(int postId, User user, String postText, byte[] postPicture, LocalDateTime timestamp, List<Like> likes) {
+	public Post(int postId, User user, String postText, String postPicture, LocalDateTime timestamp) 
+	{
+
 		super();
 		this.postId = postId;
 		this.author = user;
 		this.postText = postText;
 		this.postPicture = postPicture;
 		this.timestamp = timestamp;
-		this.likes = likes;
 	}
 	
-	public Post(int postId, User user, String postText, byte[] postPicture) {
+	public Post(int postId, User user, String postText, String postPicture) {
 		super();
 		this.postId = postId;
 		this.author = user;
@@ -71,7 +68,7 @@ public class Post {
 		this.postPicture = postPicture;
 	}
 
-	public Post(User author, String postText, byte[] postPicture) {
+	public Post(User author, String postText, String postPicture) {
 		super();
 		this.author = author;
 		this.postText = postText;
@@ -102,11 +99,11 @@ public class Post {
 		this.postText = postText;
 	}
 
-	public byte[] getPostPicture() {
+	public String getPostPicture() {
 		return postPicture;
 	}
 
-	public void setPostPicture(byte[] postPicture) {
+	public void setPostPicture(String postPicture) {
 		this.postPicture = postPicture;
 	}
 
@@ -118,20 +115,13 @@ public class Post {
 		this.timestamp = timestamp;
 	}
 
-	public List<Like> getLikes() {
-		return likes;
-	}
-
-	public void setLikes(List<Like> likes) {
-		this.likes = likes;
-	}
-
 	@Override
-	public String toString() {
-		return "\n\tPost [postId=" + postId + ", author=" + author + ", postText=" + postText + ", postPicture="
-				+ Arrays.toString(postPicture) + ", timestamp=" + timestamp + ", likes=" + likes + "]";
+	public String toString() 
+	{
+		return "Post [postId=" + postId + ", postText=" + postText + ", postPicture=" + postPicture + ", timestamp="
+				+ timestamp + ", author=" + author + "]";
+
 	}
 
-	
 	
 }

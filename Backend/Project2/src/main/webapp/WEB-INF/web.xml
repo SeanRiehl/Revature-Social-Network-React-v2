@@ -4,31 +4,27 @@
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
   </welcome-file-list>
+    <listener>
+    	<listener-class>
+      		org.apache.commons.fileupload.servlet.FileCleanerCleanup
+    	</listener-class>
+  </listener>
+  <listener>
+  	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
   
-  <!-- FORWARDING MASTER SERVLET CONFIGURATIONS -->
-    <servlet>
-        <description>MasterServlet</description>
-        <display-name>MasterServlet</display-name>
-        <servlet-name>MasterServlet</servlet-name>
-        <servlet-class>com.project.servlet.MasterServlet</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>MasterServlet</servlet-name>
-        <url-pattern>/api/*</url-pattern>
-    </servlet-mapping>
-    
-    <!-- JSON SERVLET CONFIGURATIONS -->
-    <servlet>
-        <description>JSONServlet</description>
-        <display-name>JSONServlet</display-name>
-        <servlet-name>JSONServlet</servlet-name>
-        <servlet-class>com.example.servlet.JSONMasterServlet</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>JSONServlet</servlet-name>
-        <url-pattern>/JSON/*</url-pattern>
-        <url-pattern>*.JSON</url-pattern>
-    </servlet-mapping>
+  <servlet>
+  
+  	<servlet-name>dispatcher</servlet-name>
+  	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+  
+  </servlet>
+  <servlet-mapping>
+  
+  	<servlet-name>dispatcher</servlet-name>
+  	<url-pattern>/api/*</url-pattern>
+  
+  </servlet-mapping>
+  
+  
 </web-app>
