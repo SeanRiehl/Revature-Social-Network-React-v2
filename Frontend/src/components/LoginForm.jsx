@@ -1,14 +1,37 @@
+import axios from 'axios';
 import React, { useState } from 'react';
+import {useHistory} from 'react-router-dom';
 
-function LogInForm({ setNewUser }) {
+function LogInForm(props) {
+    const setNewUser = props.setNewUser;
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+
+    let history = useHistory();
 
     const handleSubmitClick = (e) => {
         e.preventDefault();
         console.log(email)
         console.log(password)
 
+        axios.post('http://localhost:9001/Project2/api/user/login', {email: email, password: password})
+        .then((response)=>{
+            props.setUser(response.data);
+            console.log(response.data);
+            if(response.data){
+                history.push('/user');
+            }
+        })
+        .catch(console.error);
+
+        // await axios.get('http://localhost:9001/Project2/api/user/getAllUsers')
+        // .then((response)=>{
+        //     props.setAllUsers(response.data);
+        //     console.log(response.data);
+        // })
+        // .catch(console.error);
+
+        
         // MAKE SURE THE ACCOUNT EXISTS, IF SO LOAD THE POST FEED PAGE
 
         // if (password === confirmPassword) {
@@ -24,7 +47,9 @@ function LogInForm({ setNewUser }) {
         <div className="container">
             <div className="row justify-content-center align-items-center" id="login-form">
                 <div className="col-md-4 col-sm-4 col-xs-12" id="content">
-                    <form id="form">
+                    <form id="form" onSubmit={e => {
+                            handleSubmitClick(e)
+                        }}>
                         <h4>Log In</h4>
                         <div className="form-group">
                             <label className="text-start" htmlFor="exampleInputEmail1">Email Address:</label>
@@ -42,9 +67,7 @@ function LogInForm({ setNewUser }) {
                                 }} />
                         </div>
 
-                        <button type="submit" className="btn" onClick={(e) => {
-                            handleSubmitClick(e)
-                        }}>Log In</button>
+                        <button type="submit" className="btn">Log In</button>
 
                         <button className="btn" onClick={(e) => {
                             e.preventDefault()
